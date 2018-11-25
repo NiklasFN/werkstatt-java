@@ -7,8 +7,8 @@ public class OfficeWorker extends Employee{
     }
 
 
-    public Repair makeAppointment(Date d1, Mechanic m, Vehicle v1, double costs, boolean xw){
-        Repair repair = new Repair(d1, m, v1, costs, xw );
+    public Repair makeAppointment(Date dateOfRepair, Mechanic mechanic, Customer c1, Vehicle v1){
+        Repair repair = new Repair(dateOfRepair, mechanic, c1, v1 );
         return repair;
     }
 

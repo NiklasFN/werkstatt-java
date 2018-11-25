@@ -1,13 +1,15 @@
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Scanner;
 
 public class main {
 
 
     public static void main(String args[]) {
 
-        System.out.println("Welcome to our RepairOld Shop");
-
+        System.out.println("Welcome to our Repair Old Shop");
 
 
         OfficeWorker officeWorker1 = new OfficeWorker("Jenny", "Jenny's Street 1, Hamburg");
@@ -16,37 +18,41 @@ public class main {
 
         System.out.println("The repair shop and its employees have been created");
 
-        Person customer1 = new Customer("Manny", "Hupenalee 100, Hamburg");
         Vehicle car1Customer1 = new Car("red", "Porsche", "HH-MA9000", 3);
+        Customer customer1 = new Customer("Manny", "Hupenalee 100, Hamburg", car1Customer1);
 
-        System.out.println("A new customer has been created\n");
+        // Could do stuff like: Customer customer1 = person.bringCarIntoRepairShop(person1, vehicle1), but than not abstract and lächerlich
+
 
         Date dateForAppointment = returnAddedDays(2);
 
-        Repair appCustomer1 = officeWorker1.makeAppointment(dateForAppointment, mechanic1, car1Customer1);
+        Repair repair1ForCustomer1ForVehicle1 = officeWorker1.makeAppointment(dateForAppointment, mechanic1, customer1, car1Customer1);
 
-        System.out.println("An Repair has been made");
+        repair1ForCustomer1ForVehicle1.fullfillRepairAppointment();
 
         System.out.println("2 days later");
 
-//        Scanner scanner = new Scanner(System.in);
-//        String input = scanner.nextLine();
+        System.out.println("The repair costs " + repair1ForCustomer1ForVehicle1.getCosts() +
+                "€. Does the customer want additional Warranty? \nEnter 1 for Extra Warranty");
+
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+
+        if (input.equals("1")) {
+            repair1ForCustomer1ForVehicle1.payRepair(true);
+        } else {
+            repair1ForCustomer1ForVehicle1.payRepair(false);
+        }
 
 
-        System.out.println("Welcome to the repair");
 
-        mechanic1.repairVehicle(car1Customer1);
+
+
 
         // repairForCustomer1.appointment.mechanic.repairVehicle();
 
 
-
     }
-
-
-
-
-
 
 
     public static Date returnAddedDays(int days) {
