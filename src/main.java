@@ -18,19 +18,25 @@ public class main {
 
         System.out.println("The repair shop and its employees have been created");
 
-        Vehicle car1Customer1 = new Car("red", "Porsche", "HH-MA9000", 3);
-        Customer customer1 = new Customer("Manny", "Hupenalee 100, Hamburg", car1Customer1);
+        Person person1 = new Person("Kalle");
+        Vehicle car1 = new Car("red", "Porsche", "HH-MA9000", 3);
+
 
         // Could do stuff like: Customer customer1 = person.bringCarIntoRepairShop(person1, vehicle1), but than not abstract and lächerlich
 
+        Customer customerFromPerson1 = person1.bringFirstVehicleIntoRepairShop(car1);
 
-        Date dateForAppointment = returnAddedDays(2);
 
-        Repair repair1ForCustomer1ForVehicle1 = officeWorker1.makeAppointment(dateForAppointment, mechanic1, customer1, car1Customer1);
+        // Appointment appointment1 = officeWorker1.makeAppointment(customerFromPerson1, car1, mechanic1);
+        // Repair repair1 = appointment1.createRepair();
+
+
+        Date dateForAppointment = returnAddedDays(3);
+
+        Repair repair1ForCustomer1ForVehicle1 = officeWorker1.makeAppointment(dateForAppointment, mechanic1, customerFromPerson1, car1);
 
         repair1ForCustomer1ForVehicle1.fullfillRepairAppointment();
 
-        System.out.println("2 days later");
 
         System.out.println("The repair costs " + repair1ForCustomer1ForVehicle1.getCosts() +
                 "€. Does the customer want additional Warranty? \nEnter 1 for Extra Warranty");
@@ -39,14 +45,10 @@ public class main {
         String input = scanner.nextLine();
 
         if (input.equals("1")) {
-            repair1ForCustomer1ForVehicle1.payRepair(true);
+            customerFromPerson1.payRepair(repair1ForCustomer1ForVehicle1, true);
         } else {
-            repair1ForCustomer1ForVehicle1.payRepair(false);
+            customerFromPerson1.payRepair(repair1ForCustomer1ForVehicle1, false);
         }
-
-
-
-
 
 
         // repairForCustomer1.appointment.mechanic.repairVehicle();

@@ -24,7 +24,35 @@ public class Customer extends Person {
 
     }
 
+    public Customer(String name, Vehicle v1) {
+        super(name);
+        this.customerID = idCounter;
+        this.customerSince = new Date();
+        this.listOfVehicles.add(v1);
 
+        idCounter++;
+
+        System.out.println("A new customer has been created\n");
+
+    }
+
+
+
+    public void payRepair(Repair repair, boolean extraWarranty) {
+        double costs = repair.getCosts();
+
+        if (extraWarranty) {
+            costs *= 1.25;
+            // could use format, but cant be bothered
+            System.out.println("The customer chose to buy additional warranty. The Total price for the repair is "
+                    + ((double) ((int) (costs * 100))) / 100);
+        } else {
+            System.out.println("The customer dont want no additional warranty. The Total price for the repair is "
+                    + ((double) ((int) (costs * 100))) / 100);
+
+
+        }
+    }
 
 
     public double buyAdditionalWarranty() {
@@ -32,13 +60,14 @@ public class Customer extends Person {
         return 0;
     }
 
-    public void makeAppointment(){
-
+    public void makeAppointment() {
 
 
     }
 
-    public void bringCarIntoRepairShop(){}
+    public void bringVehicleIntoRepairShop(Vehicle vehicle) {
+        listOfVehicles.add(vehicle);
+    }
 
 
 }

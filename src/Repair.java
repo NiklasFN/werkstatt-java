@@ -8,6 +8,7 @@ public class Repair {
     private double costs;
     private boolean extraWarranty;
     private Customer customer;
+    private int daysTillFinish;
 
     public Repair(Date dateOfRepair, Mechanic mechanic, Customer c1, Vehicle v1) {
         this.dateOfRepair = dateOfRepair;
@@ -23,7 +24,10 @@ public class Repair {
     }
 
     public void fullfillRepairAppointment() {
-        mechanic.repairVehicle(vehicle);
+        Date date1 = new Date();
+        daysTillFinish = dateOfRepair.getDate() - date1.getDate();
+        System.out.println(daysTillFinish + " Days later");
+        this.mechanic.repairVehicle(vehicle);
         costs = (Math.random() * 2000);
     }
 
